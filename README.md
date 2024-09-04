@@ -35,7 +35,7 @@ Yang dilakukan setelah clone
 8. Jalankan seeder `php artisan db:seed`
 9. Jalankan project nya `php artisan serve`
 
-Tambahan
+## Tambahan
 
 1. Untuk reset password membutuhkan email, mungkin bisa pake mailhog buat testing email di local. [download disini](https://github.com/mailhog/MailHog). Setelah dijalanin buka `http://localhost:8025/`. Kemudian setting file `.env` menjadi
 
@@ -99,8 +99,9 @@ php artisan route:cache
 
 ## Cara Membuat Google Service Account
 
-1. **Buka Google Cloud Console**: Akses [Google Cloud Console](https://console.cloud.google.com/).
-2. **Buat Proyek Baru atau Gunakan yang Ada**: Pilih proyek Anda atau buat proyek baru.
+1. **Buka Google Cloud Console**:
+    - Akses [Google Cloud Console](https://console.cloud.google.com/).
+2. **Buat Proyek Baru atau Gunakan yang Ada**
 3. **Aktifkan Google Sheets API**:
     - Navigasikan ke **API & Services > Library**.
     - Cari **Google Sheets API** dan klik **Enable**.
@@ -111,7 +112,7 @@ php artisan route:cache
 5. **Buat dan Unduh File JSON Credentials**:
     - Setelah Service Account dibuat, klik **Manage Keys**.
     - Tambahkan kunci baru dengan memilih **JSON**.
-    - Rename file menjadi `credentials.json` dan save file di folder /storage/credentials/
+    - Rename file menjadi `credentials.json` dan save file di folder `/storage/credentials/`
 6. **Bagikan Google Sheet dengan Service Account**:
     - Buka Google Sheet yang akan digunakan untuk sinkronisasi.
     - Bagikan akses dengan email Service Account yang diakhiri dengan `@<project-id>.iam.gserviceaccount.com`.
@@ -203,3 +204,25 @@ php artisan route:cache
         }
     }
     ```
+
+### 3. Menambahkan Trigger untuk Skrip
+
+Untuk membuat skrip berjalan secara otomatis setiap kali formulir di Google Sheets di-submit, perlu ditambahkan trigger:
+
+1. **Buka Editor Apps Script**:
+   Pastikan berada di editor Apps Script yang terkait dengan Google Sheets.
+
+2. **Tambahkan Trigger Baru**:
+
+    - Klik pada ikon **Trigger** (ikon jam) di sebelah kiri, atau navigasikan ke **Triggers** dari menu.
+    - Klik tombol **Add Trigger** di kanan bawah.
+
+3. **Konfigurasi Trigger**:
+
+    - Pada opsi **Choose which function to run**, pilih `onFormSubmit`.
+    - Pada opsi **Select event source**, pilih `From form`.
+    - Pada opsi **Select event type**, pilih `On form submit`.
+    - Klik **Save** untuk menambahkan trigger.
+
+4. **Berikan Izin**:
+   Saat pertama kali menambahkan trigger atau menjalankan skrip, Google mungkin meminta izin. Klik **Review Permissions**, pilih akun Google, dan klik **Allow**.
