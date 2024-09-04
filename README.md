@@ -142,7 +142,7 @@ php artisan route:cache
     ngrok authtoken <your-auth-token>
     ```
 
-    Gantilah <your-auth-token> dengan authtoken yang Anda salin dari dashboard Ngrok. Ini akan menyimpan authtoken di konfigurasi lokal Anda.
+    Gantilah <your-auth-token> dengan authtoken yang disalin dari dashboard Ngrok. Ini akan menyimpan authtoken di konfigurasi lokal.
 
 4. **Jalankan Server Lokal**
 
@@ -156,7 +156,7 @@ php artisan route:cache
     ngrok http 8000
     ```
 
-    Dari output ini, Anda akan mendapatkan URL publik seperti `https://<ngrok-id>.ngrok-free.app`. URL ini dapat digunakan untuk mengakses server lokal Anda dari internet.
+    Dari output ini, akan mendapatkan URL publik seperti `https://<ngrok-id>.ngrok-free.app`. URL ini dapat digunakan untuk mengakses server lokal dari internet.
 
 ### 2. Mengatur Google Apps Script
 
@@ -183,9 +183,12 @@ php artisan route:cache
         // URL endpoint Laravel (ganti dengan URL Ngrok untuk pengujian lokal atau domain publik untuk produksi)
         var url = "https://<ngrok-id>.ngrok-free.app/api/google-sheets/webhook"; // atau 'https://pkkmb.stis.ac.id/2045/api/google-sheets/webhook'
 
+        var token = "<your_generated_token>"; // Token yang sama seperti di .env
+
         var payload = {
             nim: nim,
             sheet_name: sheetName,
+            token: token,
         };
 
         var options = {
@@ -205,7 +208,7 @@ php artisan route:cache
     }
     ```
 
-### 3. Menambahkan Trigger untuk Skrip
+### 3. Menambahkan Trigger untuk Script
 
 Untuk membuat skrip berjalan secara otomatis setiap kali formulir di Google Sheets di-submit, perlu ditambahkan trigger:
 
